@@ -64,9 +64,11 @@ def build(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} environment has started.."
+    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/sample-book-app-2026.git'
+    sh "npm install"
+    sh "ls"
     sh "node_modules/.bin/pm2 delete \"books-${environment}\" || exit 0"
     sh "node_modules/.bin/pm2 start -n \"books-${environment}\" index.js -- ${port}"
-    sh "ls"
     // sh "node_modules/.bin/pm2 reload -n \"books-${environment}\" index.js -- ${port}" //using 1 command to relaod service
     // sh "pm2 start -n "books-${environment}" index.js -- ${port}"
     // sh "pm2 start -n \"books-${environment}\" index.js -- ${port}"
