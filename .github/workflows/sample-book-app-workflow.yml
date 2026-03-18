@@ -42,9 +42,6 @@ jobs:
     needs: deploy-stg
     steps:
       - uses: actions/checkout@v6
-        with:
-          repository: 'mtararujs/RTU-sample-API-automation-2026'
-          clean: 'false'
       - uses: ./.github/actions/test
         with:
           environment: 'STG'
@@ -62,9 +59,6 @@ jobs:
     needs: deploy-prd 
     steps:
       - uses: actions/checkout@v6
-        with:
-          repository: 'mtararujs/RTU-sample-API-automation-2026'
-          clean: 'false'
       - uses: ./.github/actions/test
         with:
           environment: 'PRD'
