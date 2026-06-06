@@ -1,0 +1,11 @@
+name: 'Build and Push Docker Image'
+description: 'Composite action to build sample-book-app image and push it to docker hub'
+runs:
+  using: composite
+  steps:
+    - name: Build Docker image for Sample-Book-App..
+      run: docker build -t mtararujs/sample-book-app .
+      shell: bash
+    - name: Pushing image to docker registry..
+      run: docker push mtararujs/sample-book-app
+      shell: bash
