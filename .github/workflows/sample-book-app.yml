@@ -8,7 +8,7 @@ on:
         - index.js
         - package.json
         - docker-compose.yml
-        - .github
+        - .github/**
   workflow_dispatch:
 
 jobs:
