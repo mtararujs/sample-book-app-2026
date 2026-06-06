@@ -66,6 +66,10 @@ def build(){
 
 def deploy(String environment){
     echo "Deployment to ${environment} environment.."
+    sh "docker pull mtararujs/sample-book-app"
+    sh "docker compose down sample-book-app-${environment}"
+    sh "docker compose up sample-book-app-${environment}"
+    echo "Deployment to ${environment} environment finished.."
 }
 
 def test(String environment){
