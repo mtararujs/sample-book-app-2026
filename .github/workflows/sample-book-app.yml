@@ -24,8 +24,9 @@ jobs:
     needs: [deploy-dev]
     steps:
       - uses: actions/checkout@v4
-      - name: Print process name
-        run: echo "Testing Sample Book App service on DEV environment..." 
+      - uses: ./.github/actions/test
+        with:
+            environment: 'DEV'
   deploy-stg:
     runs-on: self-hosted
     needs: [test-dev]
@@ -39,8 +40,9 @@ jobs:
     needs: [deploy-stg]
     steps:
       - uses: actions/checkout@v4
-      - name: Print process name
-        run: echo "Testing Sample Book App service on STG environment..." 
+      - uses: ./.github/actions/test
+        with:
+            environment: 'STG'
   deploy-prd:
     runs-on: self-hosted
     needs: [test-stg]
@@ -54,5 +56,6 @@ jobs:
     needs: [deploy-prd]
     steps:
       - uses: actions/checkout@v4
-      - name: Print process name
-        run: echo "Testing Sample Book App service on PRD environment..." 
+      - uses: ./.github/actions/test
+        with:
+            environment: 'PRD'
