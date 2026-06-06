@@ -3,6 +3,12 @@ name: Sample Book App
 on:
   push:
     branches: [ "Day2" ]
+    paths:
+        - Dockerfile
+        - index.js
+        - package.json
+        - docker-compose.yml
+        - .github
   workflow_dispatch:
 
 jobs:
