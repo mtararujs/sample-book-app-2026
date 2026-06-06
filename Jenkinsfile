@@ -3,38 +3,64 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo "Building sample-book-app-2026 ..."
+                script{
+                    build()
+                }
             }
         }
         stage('deploy-dev') {
             steps {
-                echo "Deployment to DEV environment ..."
+                script{
+                    deploy("DEV")
+                }
             }
         }
         stage('test-dev') {
             steps {
-                echo "Testing in DEV environment ..."
+                script{
+                    test("DEV")
+                }
             }
         }
-        stage('depoy-stg') {
+        stage('deploy-stg') {
             steps {
-                echo "Deployment to STG environment ..."
+                script{
+                    deploy("STG")
+                }
             }
         }
         stage('test-stg') {
             steps {
-                echo "Testing in STG environment ..."
+                script{
+                    test("STG")
+                }
             }
         }
         stage('deploy-prd') {
             steps {
-                echo "Deployment to PRD environment ..."
+                script{
+                    deploy("PRD")
+                }
             }
         }
         stage('test-prd') {
             steps {
-                echo "Testing in PRD environment ..."
+                script{
+                    test("PRD")
+                }
             }
         }
     }
+}
+
+def build(){
+    echo "Building sample-book-app.."
+}
+
+def deploy(String environment){
+    echo "Deployment to ${environment} environment.."
+}
+
+def test(String environment){
+    echo "Testing Sample Book App service on ${environment} environment..."
 }
