@@ -7,48 +7,48 @@ on:
 
 jobs:
   build-docker-image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Building sample-book-app.." 
   deploy-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build-docker-image]
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Deployment to DEV environment.." 
   test-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Testing Sample Book App service on DEV environment..." 
   deploy-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [test-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Deployment to STG environment.." 
   test-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Testing Sample Book App service on STG environment..." 
   deploy-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [test-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Print process name
         run: echo "Deployment to PRD environment.." 
   test-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-prd]
     steps:
       - uses: actions/checkout@v4
