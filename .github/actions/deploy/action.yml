@@ -1,0 +1,18 @@
+name: 'Deploy Sample Book App'
+description: 'Deploy Sample Book App using docker compose'
+inputs:
+  environment:
+    description: 'Environment where to deploy Sample Book App'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Pull sample-book-app docker image
+      run: docker pull mtararujs/sample-book-app
+      shell: bash
+    - name: Stop and remove existing service container
+      run: docker compose down sample-book-app-${{ inputs.environment }}
+      shell: bash
+    - name: Start service container for sample-book-app
+      run: docker compose up -d sample-book-app-${{ inputs.environment }}
+      shell: bash
